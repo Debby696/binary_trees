@@ -1,36 +1,35 @@
 #include "binary_trees.h"
-int _size(const binary_tree_t *tree);
+int tree_size(const binary_tree_t *tree);
 
 /**
- * binary_tree_is_perfect - check if a binary tree is perfect
- * @tree: pointer to root node to check
+ * binary_tree_is_perfect - Checks if a binary tree is perfect
+ * @tree: Pointer to the root node of the tree
  *
- * Return: 1 if perfect else NULL
+ * Return: 0 or 1
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int size;
+	int nodes;
 
 	if (tree == NULL)
 		return (0);
 
-	size = _size(tree);
-	if (size & (size + 1))
+	nodes = tree_size(tree);
+	if (nodes & (nodes + 1))
 		return (0);
-	else
-		return (1);
+
+	return (1);
 }
 
-
 /**
- * _size - gets size of binary tree
- * @tree: pointer to root node to get the size of
- *
- * Return: size of binary tree
+ * tree_size - measures the size of a binary tree
+ * @tree: is a pointer to the root node of the tree to measure the size
+ * Return: 0 if tree is NULL
  */
-int _size(const binary_tree_t *tree)
+int tree_size(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 		return (0);
-	return (_size(tree->left) + _size(tree->right) + 1);
+
+	return (tree_size(tree->left) + tree_size(tree->right) + 1);
 }
