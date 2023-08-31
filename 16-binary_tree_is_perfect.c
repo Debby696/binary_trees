@@ -14,9 +14,9 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	if (tree->right == NULL && tree->left == NULL)
 		return (1);
 
-	int nodes = binary_tree_size(tree);
-	int height = binary_tree_height(tree);
-	int max_nodes = (1 << (height + 1)) - 1;
+	size_t nodes = binary_tree_size(tree);
+	size_t height = binary_tree_height(tree);
+	size_t max_nodes = (1 << (height + 1)) - 1;
 
 	return (max_nodes == nodes);
 }
