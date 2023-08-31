@@ -14,18 +14,21 @@ binary_tree_t *LCA_helper_func(const binary_tree_t *root,
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 				     const binary_tree_t *second)
 {
-	const binary_tree_t *root;
-	binary_tree_t *LCA;
-
 	if (first == NULL || second == NULL)
 		return (NULL);
 
-	root = first;
-	while (root->parent)
-		root = root->parent;
+	binary_tree_t *root1 = (binary_tree_t *)first;
+	binary_tree_t *root2 = (binary_tree_t *)second;
 
-	LCA = LCA_helper_func(root, first, second);
-	return (LCA);
+	while (root1->parent)
+		root1 = root1->parent;
+	while (root2->parent)
+		root2 = root2->parent;
+
+	if (root1 != root2)
+		return (NULL);
+
+	return (LCA_helper_func(root1, first, second));
 }
 
 /**
